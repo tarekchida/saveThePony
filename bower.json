@@ -1,13 +1,25 @@
 {
-    "name": "saveThePony",
-    "version": "1.0.0",
-    "main": "path/to/main.css",
-    "ignore": [
-        ".jshintrc",
-        "**/*.txt"
-    ],
-    "dependencies": {
-    },
-    "devDependencies": {
-    }
+  "name": "saveThePony",
+  "description": "run pony run !",
+  "main": "index.html",
+  "authors": [
+    "tarek chida"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "util",
+    "functional",
+    "server",
+    "client",
+    "browser"
+  ],
+  "homepage": "index.html",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public_html/bower_components",
+    "test",
+    "tests"
+  ]
 }
