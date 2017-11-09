@@ -5,8 +5,7 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
 <html>
-    <head>
-    <head>
+    <head> 
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge"> 
         <title>Run pony... Run !</title>
@@ -14,14 +13,138 @@ and open the template in the editor.
         <meta name="author" content="Tarek Chida">
         <meta name="keywords" content="pony, fun, truspilot ">
         <link rel="shortcut icon" href="favicon.ico">
-        <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css" type="text/css">
-        <link rel="stylesheet" href="/normalize.css" type="text/css">  
+        <link href='https://fonts.googleapis.com/css?family=Nova Flat' rel='stylesheet'>
+        <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css" type="text/css"> 
+        <link rel="stylesheet" href="/bower_components/seiyria-bootstrap-slider/dist/css/bootstrap-slider.min.css" type="text/css">
+        <link rel="stylesheet" href="/bower_components/components-font-awesome/css/font-awesome.min.css" type="text/css">
         <link rel="stylesheet" href="/main.css" type="text/css"> 
 
     </head> 
-    <body>        
+    <body>      
+        <div class="container">
+            <section class="maze-init">
+                <form class="form-horizontal" id="maze-form" method="POST">
+                    <fieldset>
+
+                        <div class="row"> 
+                            <div class="col-8">
+                                <div class="row">
+                                    <div class="col-4">  
+                                        <input type="radio" name="mazePlayerName" id="choosePony" class="input-hidden" value="applejack" />
+                                        <label for="choosePony">
+                                            <img src="/images/applejack.png" alt="applejack"  class="rounded" />
+                                        </label>
+                                    </div> 
+                                    <div class="col-4">
+                                        <input type="radio" name="mazePlayerName" id="rarity" class="input-hidden" value="rarity" />
+                                        <label for="rarity">
+                                            <img src="/images/rarity.png" alt="Rarity"   class="rounded"/>
+                                        </label>
+                                    </div> 
+                                    <div class="col-4">
+                                        <input type="radio" name="mazePlayerName" id="fluttershy" class="input-hidden" value="flittershy"/>
+                                        <label for="fluttershy">
+                                            <img src="/images/fluttershy.png" alt="flittershy"  class="rounded" />
+                                        </label>
+                                    </div> 
+                                    <div class="col-4">
+                                        <input type="radio" name="mazePlayerName" id="rainbow-dash" class="input-hidden" value="rainbow dash"/>
+                                        <label for="rainbow-dash">
+                                            <img src="/images/rainbow-dash.png" alt="rainbow-dash"   class="rounded" />
+                                        </label>
+                                    </div> 
+                                    <div class="col-4">
+                                        <input type="radio" name="mazePlayerName" id="twilight-sparkle" class="input-hidden" value="twilight sparkle" />
+                                        <label for="twilight-sparkle">
+                                            <img src="/images/twilight-sparkle.png" alt="twilight-sparkle"   class="rounded" />
+                                        </label>
+                                    </div> 
+                                    <div class="col-4">
+                                        <input type="radio" name="mazePlayerName" id="pinkie-pie" class="input-hidden" value="pinkie pie" />
+                                        <label for="pinkie-pie">
+                                            <img src="/images/pinkie-pie.png" alt="pinkie-pie"   class="rounded"/>
+                                        </label>
+                                    </div> 
+                                </div>
+                            </div>
+                            <div class="col-4">
+
+                                <div class="form-group">
+                                    <label class=" control-label" for="textinput">Maze Width</label>  
+                                    <div class="col-4">
+                                        <input   type="text"  id="mazeWidth" name="mazeWidth" data-provide="slider"  data-slider-min="15" data-slider-max="25" data-slider-step="1" data-slider-value="15" >
+
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label" for="textinput">Maze Height</label>  
+                                    <div class="col-4">
+                                        <input   type="text" id="mazeHeight" name="mazeHeight" data-provide="slider"  data-slider-min="15" data-slider-max="25" data-slider-step="1" data-slider-value="15" >
+
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label" for="textinput">Maze Difficulty</label>  
+                                    <div class="col-4">
+                                        <input   type="text"  id="difficulty" name="difficulty" 	data-slider-tooltip="show"   data-provide="slider"  data-slider-min="0" data-slider-max="10" data-slider-step="1" data-slider-value="1" >
+
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label" for="singlebutton"></label>
+                                    <div class="">
+                                        <button type="submit" id="btnStart" class="btn btn-primary btn-lg center">Start the maze</button>
+                                    </div>
+                                </div>
+
+
+                            </div>
+
+
+                        </div>  
+                    </fieldset>
+                </form>
+            </section>
+            <section class="maze-pony">
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="game-container">
+                            <table>
+
+                            </table>
+                        </div>
+                    </div>
+                    <div class="col-4">
+                        <div class="mase-console"  data-spy="scroll"></div>
+                        <div class="maze-direction">
+                            <div class="row">
+                                <div class="col-md-12 direction">    
+                                    <i class="fa fa-caret-square-o-up" aria-hidden="true"></i>
+                                </div>
+                            </div>
+                            <div class="row">  
+                                <div class="col-4 direction ">    
+                                    <i class="fa fa-caret-square-o-left" aria-hidden="true"></i>
+                                </div>
+                                <div class="col-4 direction">    
+                                    <i class="fa fa-caret-square-o-down" aria-hidden="true"></i>
+
+                                </div>
+                                <div class="col-4 direction">    
+                                    <i class="fa fa-caret-square-o-right" aria-hidden="true"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+            <section class="start-pony"></section>
+        </div>
         <script src="/bower_components/jquery/dist/jquery.min.js"></script>   
-        <script src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script> 
+        <script src="/bower_components/popper.js/dist/umd/popper.js"></script>  
+        <script src="/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>  
+        <script src="/bower_components/seiyria-bootstrap-slider/dist/bootstrap-slider.min.js"></script> 
         <script src="/main.js"></script> 
     </body>
 </html>

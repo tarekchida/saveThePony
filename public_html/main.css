@@ -1,0 +1,83 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 7 nov. 2017, 15:01:47
+    Author     : Tarek.Chida
+*/
+
+
+body{
+    background-color: #95b1d4;
+     font-family: 'Nova Flat';font-size: 18px;
+
+}
+.container{
+    max-width: 970px;
+}
+.maze-init{
+    position: absolute;
+    top: 50%; 
+    left: 50%;
+    transform: translate(-50%,-50%);
+    height: 50%;
+    width: 50%; 
+} 
+
+/* pony grid */
+.input-hidden {
+    position: absolute;
+    left: -9999px;
+}
+
+input[type=radio]:checked + label>img {
+    border: 1px solid #fff;
+    box-shadow: 0 0 3px 3px #ef51ff;
+}
+
+input[type=radio] + label>img { 
+    width: 200px;
+    height: 200px;
+    transition: 500ms all;
+}
+
+input[type=radio]:checked + label>img {
+
+}
+/* sliders */
+#ex1Slider .slider-selection {
+    background: #BABABA;
+}
+
+
+.maze-pony{
+    display: none;
+}
+.maze-direction div.direction{
+    text-align: center; 
+} 
+
+.maze-direction div.direction .fa{ 
+
+    font-size: 40px; 
+} 
+
+.mase-console{
+    min-height: 700px;
+    background-color: #000000;
+    color: #64ff64;
+    margin: 10px;
+    padding: 5px; 
+    max-height: 700px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+.game-container{
+    min-height: 800px;
+    background-color: #fff; 
+}
+
+
+
