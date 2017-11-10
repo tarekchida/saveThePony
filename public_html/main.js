@@ -10,6 +10,10 @@ var maze = {
     id: "",
     width: "",
     hight: "",
+    /**
+     * 
+     * @returns {undefined}
+     */
     init: function () {
         $("input.slider").slider({tooltip: 'show'});
         maze.id = "";
@@ -36,9 +40,13 @@ var maze = {
         });
 
     },
+    /**
+     * 
+     * @returns {undefined}
+     */
     star: function () {
         $('.maze-init').hide();
-        maze.consoleMsg("Maze Started");
+        maze.consoleMsg("Maze Started", 'success');
         $('.maze-pony').show();
         var mazeStatus = maze.apiRequest({}, 'GET', 'maze/' + maze.id);
         if (mazeStatus['game-state'].state == "Active") {
@@ -48,35 +56,43 @@ var maze = {
         }
 
     },
+    /**
+     * 
+     * @returns {undefined}
+     */
     print: function () {
 
         var mazePrint = maze.apiRequest({}, 'GET', 'maze/' + maze.id + '/print');
         console.log(mazePrint);
-        $('.game-container').text(mazePrint);
+
     },
+    /**
+     * 
+     * @returns {undefined}
+     */
     getDirection: function () {
         $(document).keydown(function (e) {
             switch (e.which) {
                 case 37:
-                    maze.consoleMsg("Move : left");
+                    maze.consoleMsg("Move : left", 'info');
                     break;
 
                 case 38:
-                    maze.consoleMsg("Move : Up");
+                    maze.consoleMsg("Move : Up", 'info');
                     break;
 
                 case 39:
-                    maze.consoleMsg("Move : Right");
+                    maze.consoleMsg("Move : Right", 'info');
                     break;
 
                 case 40:
-                    maze.consoleMsg("Move : Down");
+                    maze.consoleMsg("Move : Down", 'info');
                     break;
 
                 default:
-                    return; // exit this handler for other keys
+                    return;  
             }
-            e.preventDefault(); // prevent the default action (scroll / move caret)
+            e.preventDefault();  
         });
     },
     /**
@@ -98,7 +114,8 @@ var maze = {
             dataType: "json",
             async: false,
             success: function (data, status, jqXHR) {
-                apiResponse = data
+                return apiResponse = data
+
             },
             error: function (jqXHR, status) {
                 console.log(jqXHR);
@@ -106,10 +123,15 @@ var maze = {
         });
         return apiResponse;
     },
-    consoleMsg: function (msg) {
-        $('.mase-console').scrollspy();
+    /**
+     * 
+     * @param {type} msg
+     * @returns {undefined}
+     */
+    consoleMsg: function (msg, type ) {
+        $('.maze-console').scrollspy();
 
-        $('.mase-console').append(msg + "<br/>");
+        $('.maze-console').append("<p class='alert-"+type+"'>"+msg + "</p>");
     }
 
 };
