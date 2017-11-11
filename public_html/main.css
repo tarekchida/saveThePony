@@ -85,11 +85,39 @@ input[type=radio]:checked + label>img {
 .maze-console p{
     margin-bottom: 5px;
 }
-.game-container{
-    min-height: 800px;
+.game-container{ 
     background-color: #fff;  
-    margin-top: 12px; 
-    border-radius: 5px;
+    margin-top: 100px; 
+    height: 800px;
+}
+
+.nav-item a{
+    margin-right: 3px; 
+}
+.game-container .col{
+    height: 180px; 
+}
+
+.game-container td{
+    border: none;
+    height: 40px;
+    width: 40px;
+}
+.game-container td.player{
+    background: url(images/player.png) ;
+}
+.game-container td.domokun{
+    background: url(images/domokun.png) ;
+}
+td.wall-north{
+    border-top: 4px solid #218838;
+}
+td.wall-west{
+    border-left: 4px solid #218838;
+}
+td.wall-west-north, td.wall-north-west{
+    border-top: 4px solid #218838;
+    border-left: 4px solid #218838;
 }
 
 
