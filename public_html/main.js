@@ -10,23 +10,30 @@ var maze = {
     id: "",
     status: {},
     /**
-     * 
-     * @returns {undefined}
+     * Init game settings and container
+     *  
      */
     init: function () {
-        $("input.slider").slider({tooltip: 'show'});
+
         maze.id = "";
         maze.status = {};
         $('.maze-pony').hide();
         $('.maze-init').show();
+        $('.maze-console').text('');
+        $('#maze-end').attr('src', '');
+        maze.config();
+
+        // start the maze
         $('#maze-form').submit(function (event) {
             event.preventDefault();
+
             var params = new Object();
             params['maze-width'] = parseInt($('#mazeWidth').val());
             params['maze-height'] = parseInt($('#mazeHeight').val());
             params['maze-player-name'] = $('input[name="mazePlayerName"]:checked').val();
             params.difficulty = parseInt($('#difficulty').val());
             var apiResponse = maze.apiRequest(JSON.stringify(params), 'POST', 'maze');
+
             if (apiResponse.maze_id) {
                 maze.id = apiResponse.maze_id;
                 maze.start();
@@ -36,13 +43,31 @@ var maze = {
         });
     },
     /**
-     * 
-     * @returns {undefined}
+     * Manage game settings
+     *  
+     */
+    config: function () {
+        $("input.slider").slider();
+        $('#mazeWidth').change(function () {
+            $('.mWidth').text($(this).val());
+        });
+        $('#mazeHeight').change(function () {
+            $('.mHight').text($(this).val());
+        });
+        $('#difficulty').change(function () {
+            $('.mdiff').text($(this).val());
+        });
+    },
+    /**
+     * Start the Maze
+     *  
      */
     start: function () {
         $('.maze-init').hide();
         maze.consoleMsg("Maze Started", 'success');
         $('.maze-pony').show();
+
+        // get maze status
         maze.status = maze.apiRequest({}, 'GET', 'maze/' + maze.id);
         if (maze.status['game-state'].state == "Active") {
             maze.print();
@@ -52,28 +77,28 @@ var maze = {
 
     },
     /**
-     * 
-     * @returns {undefined}
+     * Print the maze in a table
+     *  
      */
     print: function () {
         $('.game-container table').html('');
 
-        console.log(maze.status.data);
+        html = '<tr>';
         $.each(maze.status.data, function (key, walls) {
+
             avatar = maze.getAvatar(key);
-            if (key == 0) {
-                html = '<tr>';
-            }
             if (key % maze.status.size[0] == 0 && key >= maze.status.size[0]) {
-                html = html + '</tr>';
-                $('.game-container table').append(html);
-                html = '<tr>';
+                html = html + '</tr><tr>';
             }
             html = html + '<td data-pos="' + key + '"  class="wall-' + walls.join("-") + avatar + '"></td>';
+
         });
+
+        html = html + '</tr>';
+        $('.game-container table').append(html);
     },
     /**
-     * 
+     * Get the poistion avatar
      * @param {type} x
      * @returns {String|avatar}
      */
@@ -99,26 +124,26 @@ var maze = {
         return avatar;
     },
     /**
+     * Manage direction and keys
      * 
-     * @returns {undefined}
      */
     getDirection: function () {
         $(document).keydown(function (e) {
             switch (e.which) {
                 case 37:
-                    maze.consoleMsg("Move : West", 'info');
+                    maze.consoleMsg("Move : west", 'info');
                     maze.nextMove('west');
                     break;
                 case 38:
-                    maze.consoleMsg("Move : North", 'info');
+                    maze.consoleMsg("Move : north", 'info');
                     maze.nextMove('north');
                     break;
                 case 39:
-                    maze.consoleMsg("Move : East", 'info');
+                    maze.consoleMsg("Move : east", 'info');
                     maze.nextMove('east');
                     break;
                 case 40:
-                    maze.consoleMsg("Move : South", 'info');
+                    maze.consoleMsg("Move : south", 'info');
                     maze.nextMove('south');
                     break;
                 default:
@@ -126,27 +151,46 @@ var maze = {
             }
             e.preventDefault();
         });
+
+        $('.maze-direction div.direction').click(function () {
+            var direction = $(this).attr('data-direction');
+            maze.consoleMsg("Move : " + direction, 'info');
+            maze.nextMove(direction);
+        });
     },
     /**
-     * 
+     * Next move in the maze
      * @param {type} direction
-     * @returns {undefined}
+     *  
      */
     nextMove: function (direction) {
-        var directions = maze.status.data[maze.status.pony];
         params = new Object();
         params.direction = direction;
         var response = maze.apiRequest(JSON.stringify(params), 'POST', 'maze/' + maze.id);
+
+        // maze ends win/loose
+        if (response.state == 'won' || response.state == 'over') {
+            maze.end(response);
+        }
         if (response['state-result'] == "Move accepted") {
             maze.status = maze.apiRequest({}, 'GET', 'maze/' + maze.id);
             maze.print();
             maze.sixSens();
         }
+
         maze.consoleMsg(response['state-result'], 'warning');
     },
     /**
-     * 
-     * @returns {undefined}
+     * Display hidden url image 
+     * @param {type} status
+     *  
+     */
+    end: function (status) {
+        $('#maze-end').attr('src', 'https://ponychallenge.trustpilot.com/' + status['hidden-url']);
+    },
+    /**
+     * Display Pony feelings
+     *  
      */
     sixSens: function () {
         if (Math.abs(maze.status.pony - maze.status.domokun) < 5) {
@@ -158,7 +202,7 @@ var maze = {
         }
     },
     /**
-     * 
+     * Global api interraction
      * @param {type} params
      * @param {type} type
      * @param {type} url
@@ -176,7 +220,7 @@ var maze = {
             dataType: "json",
             async: false,
             success: function (data, status, jqXHR) {
-                return apiResponse = data
+                apiResponse = data
 
             },
             error: function (jqXHR, status) {
@@ -186,9 +230,9 @@ var maze = {
         return apiResponse;
     },
     /**
-     * 
+     * Display messages in the game console
      * @param {type} msg
-     * @returns {undefined}
+     *  
      */
     consoleMsg: function (msg, type) {
         $('.maze-console').scrollspy();
@@ -200,7 +244,6 @@ $(document).ready(function () {
     maze.init();
     maze.getDirection();
     $('.new-maze').click(function () {
-        $('.maze-console').text('');
         maze.init();
     });
 });

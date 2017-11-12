@@ -69,7 +69,7 @@ input[type=radio]:checked + label>img {
 
     font-size: 40px; 
 } 
-
+/* game console*/
 .maze-console{
     min-height: 700px;
     background-color: #ffffff;
@@ -85,10 +85,11 @@ input[type=radio]:checked + label>img {
 .maze-console p{
     margin-bottom: 5px;
 }
+
+/* game container */
 .game-container{ 
     background-color: #fff;  
-    margin-top: 100px; 
-    height: 800px;
+    margin-top: 10px;  
 }
 
 .nav-item a{
@@ -100,25 +101,37 @@ input[type=radio]:checked + label>img {
 
 .game-container td{
     border: none;
-    height: 40px;
-    width: 40px;
+    height: 30px;
+    width: 30px; 
+}
+.game-container table{ 
+    border: 10px solid #218838;
+    background: url(images/ground.png);
+}
+.game-container td.wall-north{
+    border-top: 10px solid #218838;
+}
+.game-container td.wall-west{
+    border-left: 10px solid #218838;
+}
+.game-container td.wall-west-north, td.wall-north-west{
+    border-top: 10px solid #218838;
+    border-left: 10px solid #218838;
 }
 .game-container td.player{
-    background: url(images/player.png) ;
+    background: url(images/player.png)  no-repeat;
 }
 .game-container td.domokun{
-    background: url(images/domokun.png) ;
+    background: url(images/domokun.png)  no-repeat;
 }
-td.wall-north{
-    border-top: 4px solid #218838;
-}
-td.wall-west{
-    border-left: 4px solid #218838;
-}
-td.wall-west-north, td.wall-north-west{
-    border-top: 4px solid #218838;
-    border-left: 4px solid #218838;
+.game-container td.end-point{
+    background: url(images/end-point.png)  no-repeat;
 }
 
 
-
+.maze-end{
+    position: absolute;
+    height: 722px;
+    z-index: 99;
+    left: 300px;
+}

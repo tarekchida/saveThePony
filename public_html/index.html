@@ -42,9 +42,9 @@ and open the template in the editor.
                                         </label>
                                     </div> 
                                     <div class="col-4">
-                                        <input type="radio" name="mazePlayerName" id="fluttershy" class="input-hidden" value="flittershy"/>
+                                        <input type="radio" name="mazePlayerName" id="fluttershy" class="input-hidden" value="fluttershy"/>
                                         <label for="fluttershy">
-                                            <img src="/images/fluttershy.png" alt="flittershy"  class="rounded" />
+                                            <img src="/images/fluttershy.png" alt="fluttershy"  class="rounded" />
                                         </label>
                                     </div> 
                                     <div class="col-4">
@@ -70,28 +70,28 @@ and open the template in the editor.
                             <div class="col-4 maze-config">
 
                                 <div class="form-group">
-                                    <label class=" control-label" for="textinput">Maze Width</label>  
+                                    <label class=" control-label">Maze Width : <span class="mWidth">15</span></label>  
                                     <div class="col-4">
                                         <input   type="text"  id="mazeWidth" name="mazeWidth" data-provide="slider"  data-slider-min="15" data-slider-max="25" data-slider-step="1" data-slider-value="15" >
 
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="control-label" for="textinput">Maze Height</label>  
+                                    <label class="control-label" >Maze Height : <span class="mHight">15</span></label>  
                                     <div class="col-4">
                                         <input   type="text" id="mazeHeight" name="mazeHeight" data-provide="slider"  data-slider-min="15" data-slider-max="25" data-slider-step="1" data-slider-value="15" >
 
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="control-label" for="textinput">Maze Difficulty</label>  
+                                    <label class="control-label" >Maze Difficulty : <span class="mdiff">1</span></label>  
                                     <div class="col-4">
                                         <input   type="text"  id="difficulty" name="difficulty" 	data-slider-tooltip="show"   data-provide="slider"  data-slider-min="0" data-slider-max="10" data-slider-step="1" data-slider-value="1" >
 
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="control-label" for="singlebutton"></label>
+                                    <label class="control-label" ></label>
                                     <div class="">
                                         <button type="submit" id="btnStart" class="btn btn-primary btn-lg center">Start the maze</button>
                                     </div>
@@ -109,63 +109,43 @@ and open the template in the editor.
                 <ul class="nav justify-content-start">
                     <li class="nav-item">
                         <a class="nav-link btn-secondary new-maze" href="#">New Game</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link btn-secondary" href="#">F.A.Q</a>
-                    </li>
+                    </li> 
                 </ul>
                 <div class="row">
-                    <div class="col-md-8">
-                        <div class="game-container">
-                            <!--<div class="row">
-                                <div class="col maze-full"></div>
-                                <div class="col north-wall direction-wall"></div>
-                                <div class="col maze-full"></div> 
-                            </div>
+                    <img src="" id="maze-end" class="maze-end"/>
+                    <div class="col-4">
+                        <div class="maze-console"  data-spy="scroll"></div>
+                        <div class="maze-direction">
                             <div class="row">
-                                <div class="col west-wall  direction-wall"></div>
-                                <div class="col">  
-                                    <img src="/images/player.png" alt="pinkie-pie"   class="rounded"/>
+                                <div class="col-md-12 direction" data-direction="north">    
+                                    <i class="fa fa-caret-square-o-up" aria-hidden="true"></i>
                                 </div>
-                                <div class="col east-wall direction-wall"></div> 
                             </div>
-                            <div class="row">
-                                <div class="col maze-full"></div>
-                                <div class="col south-wall  direction-wall"></div>
-                                <div class="col maze-full"></div> 
-                            </div>-->
+                            <div class="row">  
+                                <div class="col-4 direction" data-direction="west">    
+                                    <i class="fa fa-caret-square-o-left" aria-hidden="true"></i>
+                                </div>
+                                <div class="col-4 direction" data-direction="south">    
+                                    <i class="fa fa-caret-square-o-down" aria-hidden="true"></i>
+
+                                </div>
+                                <div class="col-4 direction" data-direction="east">    
+                                    <i class="fa fa-caret-square-o-right" aria-hidden="true"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="game-container"> 
                             <table  class="table">
 
                             </table>
 
                         </div>
                     </div>
-                    <div class="col-4">
-                        <div class="maze-console"  data-spy="scroll"></div>
-                        <div class="maze-direction">
-                            <div class="row">
-                                <div class="col-md-12 direction">    
-                                    <i class="fa fa-caret-square-o-up" aria-hidden="true"></i>
-                                </div>
-                            </div>
-                            <div class="row">  
-                                <div class="col-4 direction ">    
-                                    <i class="fa fa-caret-square-o-left" aria-hidden="true"></i>
-                                </div>
-                                <div class="col-4 direction">    
-                                    <i class="fa fa-caret-square-o-down" aria-hidden="true"></i>
-
-                                </div>
-                                <div class="col-4 direction">    
-                                    <i class="fa fa-caret-square-o-right" aria-hidden="true"></i>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
 
-            </section>
-            <section class="start-pony"></section>
+            </section> 
         </div>
         <script src="/bower_components/jquery/dist/jquery.min.js"></script>   
         <script src="/bower_components/popper.js/dist/umd/popper.js"></script>  
