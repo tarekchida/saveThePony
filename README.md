@@ -2,5 +2,5 @@
 
 html / jquey app 
 
-Install 
+Install      
 bower install 
